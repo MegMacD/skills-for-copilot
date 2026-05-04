@@ -54,6 +54,30 @@ ln -sf "$(pwd)/domain" "$HOME/.claude/skills/domain"
 
 Then use them in any project: `/spec`, `/domain`, `/slice`, etc.
 
+### VS Code Copilot install (reusable across repos)
+
+Use these scripts to convert this skills pack into Copilot instruction files for any repository:
+
+```bash
+./install-copilot.sh /path/to/target-repo
+```
+
+```powershell
+.\install-copilot.ps1 -TargetRepo C:\path\to\target-repo
+```
+
+This creates:
+
+- `.github/copilot-instructions.md`
+- `.github/instructions/*.instructions.md` (one per skill)
+
+Optional mode:
+
+- `copy` (default): copy skill content into the target repo
+- `link`: symlink instruction files to this skills repo
+
+For full details and examples, see [COPILOT.md](COPILOT.md).
+
 ### Project-level domain docs
 
 The skills discover your project's domain model automatically by looking for:

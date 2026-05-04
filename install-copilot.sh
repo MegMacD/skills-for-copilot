@@ -42,6 +42,22 @@ if [[ "$MODE" != "copy" && "$MODE" != "link" ]]; then
   exit 1
 fi
 
+# Support Windows-style paths when run in Bash on Windows.
+# Examples:
+# - C:\Users\name\repo
+# - C:/Users/name/repo
+if [[ "$TARGET_REPO" =~ ^[A-Za-z]:\\ ]]; then
+  TARGET_REPO="${TARGET_REPO//\\//}"
+elif [[ "$TARGET_REPO" =~ ^[A-Za-z]:/ ]]; then
+  TARGET_REPO="$TARGET_REPO"
+elif [[ "$TARGET_REPO" =~ ^[A-Za-z]:[^/\\] ]]; then
+  echo "Target repository path looks like an unquoted Windows path with stripped backslashes: $TARGET_REPO" >&2
+  echo "Use one of these forms in bash:" >&2
+  echo "  ./install-copilot.sh 'C:\\Users\\name\\repo'" >&2
+  echo "  ./install-copilot.sh C:/Users/name/repo" >&2
+  exit 1
+fi
+
 if [[ ! -d "$TARGET_REPO" ]]; then
   echo "Target repository does not exist: $TARGET_REPO" >&2
   exit 1

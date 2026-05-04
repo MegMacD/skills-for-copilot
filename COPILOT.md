@@ -10,6 +10,13 @@ From this repository:
 ./install-copilot.sh /path/to/your/repo
 ```
 
+Windows Bash note: if you pass a Windows path, either quote it or use forward slashes.
+
+```bash
+./install-copilot.sh "C:\Users\name\repo"
+./install-copilot.sh C:/Users/name/repo
+```
+
 On Windows PowerShell:
 
 ```powershell

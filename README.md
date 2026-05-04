@@ -62,6 +62,13 @@ Use these scripts to convert this skills pack into Copilot instruction files for
 ./install-copilot.sh /path/to/target-repo
 ```
 
+Windows Bash note: if you pass a Windows path, either quote it or use forward slashes.
+
+```bash
+./install-copilot.sh "C:\Users\name\repo"
+./install-copilot.sh C:/Users/name/repo
+```
+
 ```powershell
 .\install-copilot.ps1 -TargetRepo C:\path\to\target-repo
 ```
